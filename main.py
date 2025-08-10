@@ -45,45 +45,33 @@ from widgets_estilo import EtiquetaTitulo
 
 
 
-import openpyxl
+
 import sqlite3
+from openpyxl import load_workbook
 
-def procesar_excel_y_guardar_db(ruta_archivo, nombre_db='flores.db'):
-    wb = openpyxl.load_workbook(ruta_archivo)
-    hoja = wb.active
+def leer_registro_floral(ruta_excel):
+    try:
+        wb = load_workbook(ruta_excel)
+        hoja = wb["Cultivos"]
+        registros = []
 
-    datos = []
-    for fila in hoja.iter_rows(min_row=10, values_only=True):
-        if not fila[0]:
-            continue
-        datos.append(fila)
+        for fila in hoja.iter_rows(min_row=2, values_only=True):
+            registro = {
+                "id": fila[0],
+                "flor": fila[1],
+                "variedad": fila[2],
+                "noches_luces": fila[3],
+                "cantidad": fila[4],
+                "fecha": fila[5],
+                "ubicacion": fila[6],
+                "observaciones": fila[7]
+            }
+            registros.append(registro)
 
-    conn = sqlite3.connect(nombre_db)
-    cursor = conn.cursor()
-
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS siembras (
-            codigo TEXT,
-            nombre TEXT,
-            luces INTEGER,
-            semana TEXT,
-            val1 REAL,
-            val2 REAL,
-            val3 REAL,
-            val4 REAL,
-            val5 REAL,
-            val6 REAL,
-            total REAL
-        )
-    ''')
-
-    for fila in datos:
-        fila = fila + (None,) * (11 - len(fila))
-        cursor.execute('INSERT INTO siembras VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', fila)
-
-    conn.commit()
-    conn.close()
- 
+        return registros
+    except Exception as e:
+        print(f"Error al leer el archivo: {e}")
+        return []
 
 
 
