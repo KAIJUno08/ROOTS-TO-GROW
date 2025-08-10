@@ -1,3 +1,9 @@
+### Codigo fuente
+#-Funciones claves ('def')
+#- Clases personalizadas 
+#- Logica de interaccion con el usario
+
+
 from kivy.config import Config
 
 Config.set('graphics', 'width', '400')
@@ -31,6 +37,8 @@ from kivy.uix.widget import Widget
 from kivy.uix.scrollview import ScrollView
 from functools import partial
 from widgets_estilo import EtiquetaTitulo
+
+
 
 
 
