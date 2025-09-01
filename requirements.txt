@@ -1,0 +1,11 @@
+Requisitos
+
+* Python 3.8+
+* Kivy 2.2.1
+* Openpyxl (para leer archivos Excel)
+
+Autor
+
+Kevin Santiago Rendón Buitrago
+Eliezer Jesús Ávila Bustos
+

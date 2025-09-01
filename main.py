@@ -1,3 +1,9 @@
+### Codigo fuente
+#-Funciones claves ('def')
+#- Clases personalizadas 
+#- Logica de interaccion con el usario
+
+
 from kivy.config import Config
 
 Config.set('graphics', 'width', '400')
@@ -34,8 +40,13 @@ from widgets_estilo import EtiquetaTitulo
 
 
 
-import sqlite3
 
+
+
+
+
+
+import sqlite3
 from openpyxl import load_workbook
 
 def leer_registro_floral(ruta_excel):
@@ -61,7 +72,6 @@ def leer_registro_floral(ruta_excel):
     except Exception as e:
         print(f"Error al leer el archivo: {e}")
         return []
- 
 
 
 
