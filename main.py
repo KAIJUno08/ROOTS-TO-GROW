@@ -2,6 +2,7 @@
 #-Funciones claves ('def')
 #- Clases personalizadas 
 #- Logica de interaccion con el usario
+#- Manejo de base de datos
 
 
 from kivy.config import Config
